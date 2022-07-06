@@ -1,9 +1,48 @@
+import 'package:pagaar/admin/addemp.dart';
+import 'package:pagaar/admin/designs.dart';
+import 'package:pagaar/admin/home.dart';
+import 'package:pagaar/employee/emp_dashboard.dart';
 import 'Animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    void Login() {
+      String myemail = emailController.text.trim();
+      String mypassword = passwordController.text.trim();
+
+      if (myemail == "Admin" || mypassword == "Admin") {
+        Navigator.push(
+            context, CupertinoPageRoute(builder: (context) => AdminHome()));
+        //AdminHome
+      } else {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Login Failure"),
+                content: Text("Please Fill all the Details"),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text("Ok"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              );
+            });
+      }
+
+      // Navigator.popUntil(context, (route) => route.isFirst);
+      // Navigator.pushReplacement(
+      //context, CupertinoPageRoute(builder: ((context) => EmpHome())));
+    }
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -65,7 +104,7 @@ class HomePage extends StatelessWidget {
                               margin: EdgeInsets.only(top: 50),
                               child: Center(
                                 child: Text(
-                                  "Login",
+                                  "Welcome !!",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 40,
@@ -103,6 +142,7 @@ class HomePage extends StatelessWidget {
                                           bottom: BorderSide(
                                               color: Colors.grey[100]))),
                                   child: TextField(
+                                    controller: emailController,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Email or Phone number",
@@ -113,6 +153,8 @@ class HomePage extends StatelessWidget {
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextField(
+                                    obscureText: true,
+                                    controller: passwordController,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Password",
@@ -137,11 +179,23 @@ class HomePage extends StatelessWidget {
                                   Color.fromRGBO(143, 148, 251, .6),
                                 ])),
                             child: Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                              // child: Text(
+                              //   "Login",
+                              //   style: TextStyle(
+                              //       color: Colors.white,
+                              //       fontWeight: FontWeight.bold),
+                              // ),
+
+                              child: TextButton(
+                                onPressed: () {
+                                  Login();
+                                },
+                                child: Text(
+                                  'Login', //title
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                           )),
