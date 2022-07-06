@@ -41,45 +41,125 @@ class AdminHomePage extends StatelessWidget {
             ],
           )),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                FlatButton(
+              // child: Column(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: <Widget>[
+              //     FlatButton(
+              //       color: Color.fromARGB(255, 12, 167, 229),
+              //       textColor: Colors.white,
+              //       child: Text("Employee Registation"),
+              //       onPressed: () {
+              //         Navigator.of(context).push(
+              //             MaterialPageRoute(builder: (context) => AddEmploye()));
+              //         print("BY");
+              //       },
+              //     ),
+              //     SizedBox(width: 5),
+              //     FlatButton(
+              //       color: Color.fromARGB(255, 12, 167, 229),
+              //       textColor: Colors.white,
+              //       child: Text("Employee Profile"),
+              //       onPressed: () {
+              //         Navigator.of(context).push(
+              //             MaterialPageRoute(builder: (context) => EmpProfile()));
+              //         print("Hello");
+              //       },
+              //     ),
+              //     SizedBox(width: 5),
+              //     FlatButton(
+              //       color: Color.fromARGB(255, 12, 167, 229),
+              //       textColor: Colors.white,
+              //       child: Text("Employee Attendence"),
+              //       onPressed: () {
+              //         Navigator.of(context).push(MaterialPageRoute(
+              //             builder: (context) => EmpAttendence()));
+              //         //print("BY");
+              //       },
+              //     ),
+              //     SizedBox(width: 5),
+              //   ],
+              // ),
+              child: GridView.extent(
+            primary: false,
+            padding: const EdgeInsets.all(16),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            maxCrossAxisExtent: 200.0,
+            children: <Widget>[
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddEmploye()));
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
                   color: Color.fromARGB(255, 12, 167, 229),
-                  textColor: Colors.white,
-                  child: Text("Employee Registation"),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => AddEmploye()));
-                    print("BY");
-                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.list_alt,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Employee Registation",
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      )
+                    ],
+                  ),
                 ),
-                SizedBox(width: 5),
-                FlatButton(
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => EmpProfile()));
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
                   color: Color.fromARGB(255, 12, 167, 229),
-                  textColor: Colors.white,
-                  child: Text("Employee Profile"),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => EmpProfile()));
-                    print("Hello");
-                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.account_circle_rounded,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Employee Profile",
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      )
+                    ],
+                  ),
                 ),
-                SizedBox(width: 5),
-                FlatButton(
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => EmpAttendence()));
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
                   color: Color.fromARGB(255, 12, 167, 229),
-                  textColor: Colors.white,
-                  child: Text("Employee Attendence"),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => EmpAttendence()));
-                    //print("BY");
-                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.check,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Employee Attendence",
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      )
+                    ],
+                  ),
                 ),
-                SizedBox(width: 5),
-              ],
-            ),
-          ),
+              ),
+            ],
+          )),
         ),
       ),
     );
