@@ -18,7 +18,7 @@ class _EmpProfileState extends State<EmpProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 194, 163, 247),
+        backgroundColor: Color.fromARGB(255, 90, 81, 225),
         title: const Text('Employee Profile'),
       ),
       body: Center(
@@ -28,7 +28,7 @@ class _EmpProfileState extends State<EmpProfile> {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Colors.deepPurple,
+              Color.fromARGB(255, 90, 81, 225),
               Colors.white,
             ],
           )),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:pagaar/admin/addemp.dart';
 import 'package:pagaar/admin/designs.dart';
 import 'package:pagaar/admin/home.dart';
@@ -5,21 +7,52 @@ import 'package:pagaar/employee/emp_dashboard.dart';
 import 'Animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    void Login() {
+    void trueLogin() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Login Sucess"),
+              // content: Text("Please Fill all the Details"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.popUntil(context, (route) => route.isFirst);
+                    Navigator.push(context,
+                        CupertinoPageRoute(builder: (context) => AdminHome()));
+                  },
+                )
+              ],
+            );
+          });
+    }
+
+    void Login() async {
       String myemail = emailController.text.trim();
       String mypassword = passwordController.text.trim();
 
-      if (myemail == "Admin" || mypassword == "Admin") {
-        Navigator.push(
-            context, CupertinoPageRoute(builder: (context) => AdminHome()));
-        //AdminHome
-      } else {
+      if (myemail == "" ||
+          myemail == null && mypassword == "" ||
+          mypassword == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.lightBlue,
+            content: Text(
+              "Please Fill All the Field",
+              style: TextStyle(fontSize: 18.0, color: Colors.black),
+            ),
+          ),
+        );
+        log("Please Fill All the Field");
+        //This is for Alert box
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -36,6 +69,46 @@ class HomePage extends StatelessWidget {
                 ],
               );
             });
+      } else {
+        try {
+          UserCredential userCredential = await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: myemail, password: mypassword);
+          if (userCredential.user != null) {
+            print('Log in sucess');
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.lightBlue,
+                content: Text(
+                  "Login Sucess",
+                  style: TextStyle(fontSize: 18.0, color: Colors.black),
+                ),
+              ),
+            );
+            trueLogin();
+          }
+        } on FirebaseAuthException catch (e) {
+          if (e.code != "") {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("Login Failure"),
+                    content: Text(e.code),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text("Ok"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          emailController.clear();
+                          passwordController.clear();
+                        },
+                      )
+                    ],
+                  );
+                });
+            print('No user found for that email.');
+          }
+        }
       }
 
       // Navigator.popUntil(context, (route) => route.isFirst);

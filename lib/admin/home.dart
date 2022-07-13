@@ -98,7 +98,7 @@ class AdminHomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.list_alt,
+                        Icons.app_registration,
                         size: 50,
                         color: Colors.white,
                       ),

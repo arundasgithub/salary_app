@@ -18,7 +18,7 @@ class _AddEmployeState extends State<AddEmploye> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 194, 163, 247),
+        backgroundColor: Color.fromARGB(255, 90, 81, 225),
         title: const Text('Employee Registation'),
       ),
       body: Center(
@@ -28,8 +28,10 @@ class _AddEmployeState extends State<AddEmploye> {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Colors.deepPurple,
+              Color.fromARGB(255, 90, 81, 225),
               Colors.white,
+              // Colors.red,
+              // Colors.orange,
             ],
           )),
           child: Center(

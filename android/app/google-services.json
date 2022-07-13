@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "595598168634",
+    "project_id": "salaryapp-d1f59",
+    "storage_bucket": "salaryapp-d1f59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595598168634:android:d576f19fc2a74bf3e35b03",
+        "android_client_info": {
+          "package_name": "com.example.pagaar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595598168634-o8ph8nkmi4p4oefru2adskko0stllmoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQR2YA5zR8gliO22FzGThZHvH6vKwhyeg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595598168634-o8ph8nkmi4p4oefru2adskko0stllmoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
