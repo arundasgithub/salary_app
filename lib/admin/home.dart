@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pagaar/admin/Add_Employee.dart';
 import 'package:pagaar/admin/Emp_Profile.dart';
 import 'package:pagaar/admin/Emp_attandance.dart';
-import 'package:pagaar/admin/addemp.dart';
+//import 'package:pagaar/admin/addemp.dart';
 
 void main() {
   runApp(AdminHome());
@@ -12,6 +13,7 @@ class AdminHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -89,7 +91,7 @@ class AdminHomePage extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddEmploye()));
+                      MaterialPageRoute(builder: (context) => AddEmployee()));
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8),
@@ -103,7 +105,7 @@ class AdminHomePage extends StatelessWidget {
                         color: Colors.white,
                       ),
                       Text(
-                        "Employee Registation",
+                        "Employee Register",
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       )
                     ],
@@ -151,7 +153,7 @@ class AdminHomePage extends StatelessWidget {
                         color: Colors.white,
                       ),
                       Text(
-                        "Employee Attendence",
+                        "Attendence",
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       )
                     ],
