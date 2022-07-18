@@ -75,6 +75,16 @@ class _AddEmployeeState extends State<AddEmployee> {
     documentReference
         .set(EmployeeList)
         .whenComplete(() => print("Employee Data stored successfully"));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        backgroundColor: Colors.lightBlue,
+        content: Text(
+          "Employee Data saved successfully",
+          style: TextStyle(fontSize: 18.0, color: Colors.black),
+        ),
+      ),
+    );
+    Navigator.of(context).pop();
   }
 
   FocusNode myFocusNode = new FocusNode();
@@ -343,24 +353,79 @@ class _AddEmployeeState extends State<AddEmployee> {
                               setState(() {
                                 if (name.isEmpty) {
                                   _validateName = true;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.lightBlue,
+                                      content: Text(
+                                        "Please Fill All the Field",
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  );
                                 } else if (_DOBController.text.isEmpty) {
                                   _validateName = false;
                                   _validateDate = true;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.lightBlue,
+                                      content: Text(
+                                        "Please Fill All the Field",
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  );
                                 } else if (experience.isEmpty) {
                                   _validateName = false;
                                   _validateDate = false;
                                   _validateExperience = true;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.lightBlue,
+                                      content: Text(
+                                        "Please Fill All the Field",
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  );
                                 } else if (qualification.isEmpty) {
                                   _validateName = false;
                                   _validateDate = false;
                                   _validateExperience = false;
                                   _validateQualification = true;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.lightBlue,
+                                      content: Text(
+                                        "Please Fill All the Field",
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  );
                                 } else if (email.isEmpty) {
                                   _validateName = false;
                                   _validateDate = false;
                                   _validateExperience = false;
                                   _validateQualification = false;
                                   _validateEmail = true;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.lightBlue,
+                                      content: Text(
+                                        "Please Fill All the Field",
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  );
                                 } else if (phone.isEmpty) {
                                   _validateName = false;
                                   _validateDate = false;
@@ -369,6 +434,17 @@ class _AddEmployeeState extends State<AddEmployee> {
                                   _validateQualification = false;
                                   _validateEmail = false;
                                   _validateMobile = true;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.lightBlue,
+                                      content: Text(
+                                        "Please Fill All the Field",
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  );
                                 } else {
                                   _validateName = false;
                                   _validateDate = false;
@@ -377,10 +453,10 @@ class _AddEmployeeState extends State<AddEmployee> {
                                   _validateQualification = false;
                                   _validateEmail = false;
                                   _validateMobile = false;
+                                  AddEmployee();
                                 }
-                                AddEmployee();
                               });
-                              Navigator.of(context).pop();
+                              // Navigator.of(context).pop();
                             },
                             //child: const Text("Register"),
                             child: Container(
