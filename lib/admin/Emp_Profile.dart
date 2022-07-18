@@ -19,7 +19,7 @@ class _EmpProfileState extends State<EmpProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 194, 163, 247),
+        backgroundColor: Color.fromARGB(255, 90, 81, 225),
         title: const Text('Employee Profile'),
       ),
       body: Container(
@@ -29,7 +29,7 @@ class _EmpProfileState extends State<EmpProfile> {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Colors.deepPurple,
+            Color.fromARGB(255, 90, 81, 225),
             Colors.white,
           ],
         )),
@@ -56,7 +56,13 @@ class _EmpProfileState extends State<EmpProfile> {
                     document.data() as Map<String, dynamic>;
                 return Card(
                   child: ListTile(
-                    title: Text(data['Emp-Name']),
+                    title: Container(
+                      color: Color.fromARGB(35, 130, 145, 244),
+                      child: Text(
+                        data['Emp-Name'],
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
                     onTap: () {
                       Navigator.push(
                         context,

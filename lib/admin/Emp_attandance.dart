@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:ui';
+
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,7 +22,7 @@ class _EmpAttendenceState extends State<EmpAttendence> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 194, 163, 247),
+        backgroundColor: Color.fromARGB(255, 90, 81, 225),
         title: const Text('Employee Attendence'),
       ),
       body: Container(
@@ -29,7 +32,7 @@ class _EmpAttendenceState extends State<EmpAttendence> {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Colors.deepPurple,
+            Color.fromARGB(255, 90, 81, 225),
             Colors.white,
           ],
         )),
@@ -42,26 +45,52 @@ class _EmpAttendenceState extends State<EmpAttendence> {
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Colors.red,
-                    ),
-                  ),
-                );
+                return Text("Loading");
               }
               return ListView(
                   children: snapshot.data.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
+                Color textColor;
+
+                if (data["attandance"].toString().contains("Present")) {
+                  textColor = Colors.green;
+                } else if (data["attandance"].toString().contains("Absent")) {
+                  textColor = Colors.red;
+                } else if (data["attandance"].toString().contains("HalfDay")) {
+                  textColor = Colors.yellow;
+                }
+
                 return Card(
                   child: ListTile(
-                    trailing: Text(
-                      data['attandance'],
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 110, 32, 234)),
+                    trailing: Container(
+                      height: 35,
+                      width: 100,
+                      alignment: Alignment.center,
+
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 144, 212, 239),
+                        border: Border.all(
+                            width: 2, color: Color.fromARGB(255, 89, 116, 225)),
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                      ),
+                      //color: Color.fromARGB(255, 207, 233, 246),
+                      child: Text(
+                        data['attandance'],
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
                     ),
-                    title: Text(data['Emp-Name']),
+                    title: Container(
+                      color: Color.fromARGB(35, 130, 145, 244),
+                      child: Text(
+                        data['Emp-Name'],
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
                     onTap: () {
                       Navigator.push(
                         context,

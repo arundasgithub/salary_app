@@ -82,7 +82,7 @@ class _AddEmployeeState extends State<AddEmployee> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 194, 163, 247),
+        backgroundColor: Color.fromARGB(255, 90, 81, 225),
         title: const Text('Employee Registation'),
       ),
       body: SingleChildScrollView(
@@ -94,7 +94,7 @@ class _AddEmployeeState extends State<AddEmployee> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.deepPurple,
+                Color.fromARGB(255, 90, 81, 225),
                 Colors.white,
               ],
             )),
@@ -379,7 +379,23 @@ class _AddEmployeeState extends State<AddEmployee> {
                               });
                               Navigator.of(context).pop();
                             },
-                            child: const Text("Register"),
+                            //child: const Text("Register"),
+                            child: Container(
+                                height: 30,
+                                width: 100,
+                                alignment: Alignment.center,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Register',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Icon(
+                                      Icons.check_box,
+                                      color: Color.fromARGB(255, 24, 48, 58),
+                                    ),
+                                  ],
+                                )),
                           ),
                         ),
                       ],

@@ -28,6 +28,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
   final datecontroller = TextEditingController();
   final experiencecontroller = TextEditingController();
   final genderController = TextEditingController();
+  String gender;
   final empidController = TextEditingController();
 
   @override
@@ -42,6 +43,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
 
     experiencecontroller.text = widget.empl['Experience'];
     genderController.text = widget.empl['gender'];
+    gender = genderController.text;
     super.initState();
   }
 
@@ -66,10 +68,9 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
   Widget build(BuildContext context) {
     GlobalKey<FormState> _formKey = GlobalKey();
 
-    String gender = genderController.text;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 194, 163, 247),
+          backgroundColor: Color.fromARGB(255, 90, 81, 225),
           title: const Text("Employee Details"),
         ),
         body: SingleChildScrollView(
@@ -81,7 +82,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                    Colors.deepPurple,
+                    Color.fromARGB(255, 90, 81, 225),
                     Colors.white,
                   ],
                 )),
@@ -289,7 +290,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                                     'Emp-Name': nameController.text,
                                     'DateOfBrith': datecontroller.text,
                                     'Experience': experiencecontroller.text,
-                                    'gender': genderController.text,
+                                    'gender': gender,
                                     'email': emailController.text,
                                     'PhoneNo': mobilecontroller.text,
                                     'qualification':

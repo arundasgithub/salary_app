@@ -23,6 +23,7 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
   final idController = TextEditingController();
   final nameController = TextEditingController();
   final attandanceController = TextEditingController();
+  String Attan_dance;
   final emailController = TextEditingController();
   static final DateTime now = DateTime.now();
   static final DateFormat formatter = DateFormat('dd-mm-yyyy');
@@ -34,15 +35,16 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
     idController.text = widget.empl['EmpID'];
     nameController.text = widget.empl['Emp-Name'];
     emailController.text = widget.empl['email'];
-
+    Attan_dance = attandanceController.text;
     super.initState();
   }
 
   FocusNode myFocusNode = new FocusNode();
+
   @override
   Widget build(BuildContext context) {
     GlobalKey<FormState> _formKey = GlobalKey();
-    String Attan_dance = attandanceController.text;
+
     // bool _value = false;
     //int attandance = 0;
 
@@ -50,7 +52,7 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 194, 163, 247),
+          backgroundColor: Color.fromARGB(255, 90, 81, 225),
           title: const Text("Employee Mark Attandance"),
         ),
         body: SingleChildScrollView(
@@ -62,7 +64,7 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                    Colors.deepPurple,
+                    Color.fromARGB(255, 90, 81, 225),
                     Colors.white,
                   ],
                 )),
@@ -198,7 +200,7 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
                             onChanged: (value) {
                               setState(() {
                                 Attan_dance = value.toString();
-                                print("Arun......${value}");
+                                print("Arun......${Attan_dance}");
                               });
                             },
                             activeColor: Colors.green,
@@ -215,7 +217,7 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
                             onChanged: (value) {
                               setState(() {
                                 Attan_dance = value.toString();
-                                print("Arun......${value}");
+                                print("Arun......${Attan_dance}");
                               });
                             },
                             activeColor: Colors.red,
@@ -232,7 +234,7 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
                             onChanged: (value) {
                               setState(() {
                                 Attan_dance = value.toString();
-                                print("Arun......${value}");
+                                print("Arun......${Attan_dance}");
                               });
                             },
                             activeColor: Colors.yellow,
@@ -254,7 +256,7 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
                               users
                                   .doc(idController.text)
                                   .update({
-                                    'attandance': attandanceController.text,
+                                    'attandance': Attan_dance,
                                   })
                                   .then((value) => print(
                                       "Employee Attandance Mark Successfully"))
