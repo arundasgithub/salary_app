@@ -259,10 +259,19 @@ class _markAtta_EmployeState extends State<markAtta_Employe> {
                                     'attandance': Attan_dance,
                                   })
                                   .then((value) => print(
-                                      "Employee Attandance Mark Successfully"))
+                                      "Employee Attendance Mark Successfully"))
                                   .catchError((error) =>
                                       print("Failed to update user: $error"));
-
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.lightBlue,
+                                  content: Text(
+                                    "Attendance marked successfully",
+                                    style: TextStyle(
+                                        fontSize: 18.0, color: Colors.black),
+                                  ),
+                                ),
+                              );
                               Navigator.of(context).pop();
                             },
                             child: Row(
