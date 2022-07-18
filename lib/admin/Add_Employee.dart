@@ -139,6 +139,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                         Container(
                           padding: const EdgeInsets.all(10),
                           child: TextField(
+                              keyboardType: TextInputType.number,
                               controller: _DOBController,
                               decoration: InputDecoration(
                                 labelText: 'Date',
@@ -219,6 +220,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                         Container(
                           padding: const EdgeInsets.all(10),
                           child: TextField(
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: 'Exprience',
                               labelStyle: TextStyle(
@@ -304,6 +306,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                         Container(
                           padding: const EdgeInsets.all(10),
                           child: TextFormField(
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: 'Mobile Number',
                               labelStyle: TextStyle(

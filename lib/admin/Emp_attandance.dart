@@ -45,7 +45,13 @@ class _EmpAttendenceState extends State<EmpAttendence> {
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text("Loading");
+                return const Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Colors.red,
+                    ),
+                  ),
+                );
               }
               return ListView(
                   children: snapshot.data.docs.map((DocumentSnapshot document) {
