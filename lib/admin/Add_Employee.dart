@@ -69,6 +69,7 @@ class _AddEmployeeState extends State<AddEmployee> {
       "PhoneNo": phone,
       "gender": gender,
       "qualification": qualification,
+      "attandance": "Absent",
     };
 
     documentReference
