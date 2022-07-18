@@ -300,7 +300,16 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                                       "Employee data Updated Successfully"))
                                   .catchError((error) =>
                                       print("Failed to update user: $error"));
-
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.lightBlue,
+                                  content: Text(
+                                    "Employee Data Updated successfully",
+                                    style: TextStyle(
+                                        fontSize: 18.0, color: Colors.black),
+                                  ),
+                                ),
+                              );
                               Navigator.of(context).pop();
                             },
                             icon: const Icon(Icons.edit),
