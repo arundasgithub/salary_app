@@ -31,6 +31,12 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
   String gender;
   final empidController = TextEditingController();
 
+  bool _validateDate = false;
+  bool _validateName = false;
+  bool _validateExperience = false;
+  bool _validateQualification = false;
+  bool _validateEmail = false;
+  bool _validateMobile = false;
   @override
   void initState() {
 // TODO: implement initState
@@ -40,7 +46,6 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
     qualificationController.text = widget.empl['qualification'];
     mobilecontroller.text = widget.empl['PhoneNo'];
     datecontroller.text = widget.empl['DateOfBrith'];
-
     experiencecontroller.text = widget.empl['Experience'];
     genderController.text = widget.empl['gender'];
     gender = genderController.text;
@@ -89,9 +94,10 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                 child: Column(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextField(
                         controller: nameController,
+                        maxLength: 20,
                         decoration: InputDecoration(
                           labelText: 'Employee Name',
                           hintText: 'Employee Name',
@@ -101,6 +107,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                                   : Colors.black),
                           fillColor: Colors.grey.shade100,
                           filled: true,
+                          errorText: _validateName ? "*Required" : null,
                           prefixIcon:
                               const Icon(Icons.person, color: Colors.grey),
                           border: OutlineInputBorder(
@@ -112,9 +119,11 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextField(
                           controller: datecontroller,
+                          keyboardType: TextInputType.number,
+                          maxLength: 10,
                           decoration: InputDecoration(
                             labelText: 'Date',
                             labelStyle: TextStyle(
@@ -123,6 +132,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                                     : Colors.black),
                             fillColor: Colors.grey.shade100,
                             filled: true,
+                            errorText: _validateDate ? "*Required" : null,
                             prefixIcon: InkWell(
                               onTap: () {
                                 _selectedDOB(context);
@@ -139,52 +149,6 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                     ),
                     Container(
                       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: TextField(
-                        controller: experiencecontroller,
-                        decoration: InputDecoration(
-                          labelText: 'Experience',
-                          hintText: 'Experience Details',
-                          labelStyle: TextStyle(
-                              color: myFocusNode.hasFocus
-                                  ? Colors.black
-                                  : Colors.black),
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
-                          prefixIcon:
-                              const Icon(Icons.person_add, color: Colors.grey),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: TextField(
-                        controller: qualificationController,
-                        decoration: InputDecoration(
-                          labelText: 'Qualification',
-                          hintText: 'Qualification Details',
-                          labelStyle: TextStyle(
-                              color: myFocusNode.hasFocus
-                                  ? Colors.black
-                                  : Colors.black),
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
-                          prefixIcon: const Icon(Icons.cast_for_education,
-                              color: Colors.grey),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
                       child: Column(
                         children: [
                           Row(
@@ -230,9 +194,62 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      child: TextField(
+                        controller: experiencecontroller,
+                        keyboardType: TextInputType.number,
+                        maxLength: 3,
+                        decoration: InputDecoration(
+                          labelText: 'Experience',
+                          hintText: 'Experience Details',
+                          labelStyle: TextStyle(
+                              color: myFocusNode.hasFocus
+                                  ? Colors.black
+                                  : Colors.black),
+                          fillColor: Colors.grey.shade100,
+                          filled: true,
+                          errorText: _validateExperience ? "*Required" : null,
+                          prefixIcon:
+                              const Icon(Icons.person_add, color: Colors.grey),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      child: TextField(
+                        controller: qualificationController,
+                        maxLength: 6,
+                        decoration: InputDecoration(
+                          labelText: 'Qualification',
+                          hintText: 'Qualification Details',
+                          labelStyle: TextStyle(
+                              color: myFocusNode.hasFocus
+                                  ? Colors.black
+                                  : Colors.black),
+                          fillColor: Colors.grey.shade100,
+                          filled: true,
+                          errorText:
+                              _validateQualification ? "*Required" : null,
+                          prefixIcon: const Icon(Icons.cast_for_education,
+                              color: Colors.grey),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextField(
                         controller: emailController,
+                        maxLength: 20,
                         decoration: InputDecoration(
                           labelText: 'Email',
                           hintText: 'Employee Email',
@@ -242,6 +259,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                                   : Colors.black),
                           fillColor: Colors.grey.shade100,
                           filled: true,
+                          errorText: _validateEmail ? "*Required" : null,
                           prefixIcon:
                               const Icon(Icons.email, color: Colors.grey),
                           border: OutlineInputBorder(
@@ -256,6 +274,8 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextField(
                         controller: mobilecontroller,
+                        keyboardType: TextInputType.number,
+                        maxLength: 10,
                         decoration: InputDecoration(
                           labelText: 'Mobile Number',
                           hintText: 'Enter your Mobile Number',
@@ -265,6 +285,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                                   : Colors.black),
                           fillColor: Colors.grey.shade100,
                           filled: true,
+                          errorText: _validateMobile ? "*Required" : null,
                           prefixIcon: const Icon(Icons.phone_android,
                               color: Colors.grey),
                           border: OutlineInputBorder(
@@ -275,42 +296,135 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20),
-                    ),
                     Container(
                         height: 100,
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.all(30),
                         child: ElevatedButton.icon(
                             onPressed: () async {
-                              users
-                                  .doc(idController.text)
-                                  .update({
-                                    'Emp-Name': nameController.text,
-                                    'DateOfBrith': datecontroller.text,
-                                    'Experience': experiencecontroller.text,
-                                    'gender': gender,
-                                    'email': emailController.text,
-                                    'PhoneNo': mobilecontroller.text,
-                                    'qualification':
-                                        qualificationController.text
-                                  })
-                                  .then((value) => print(
-                                      "Employee data Updated Successfully"))
-                                  .catchError((error) =>
-                                      print("Failed to update user: $error"));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  backgroundColor: Colors.lightBlue,
-                                  content: Text(
-                                    "Employee Data Updated successfully",
-                                    style: TextStyle(
-                                        fontSize: 18.0, color: Colors.black),
+                              if (nameController.text.isEmpty) {
+                                _validateName = true;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.lightBlue,
+                                    content: Text(
+                                      "Please Fill All the Field",
+                                      style: TextStyle(
+                                          fontSize: 18.0, color: Colors.black),
+                                    ),
                                   ),
-                                ),
-                              );
-                              Navigator.of(context).pop();
+                                );
+                              } else if (datecontroller.text.isEmpty) {
+                                _validateName = false;
+                                _validateDate = true;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.lightBlue,
+                                    content: Text(
+                                      "Please Fill All the Field",
+                                      style: TextStyle(
+                                          fontSize: 18.0, color: Colors.black),
+                                    ),
+                                  ),
+                                );
+                              } else if (experiencecontroller.text.isEmpty) {
+                                _validateName = false;
+                                _validateDate = false;
+                                _validateExperience = true;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.lightBlue,
+                                    content: Text(
+                                      "Please Fill All the Field",
+                                      style: TextStyle(
+                                          fontSize: 18.0, color: Colors.black),
+                                    ),
+                                  ),
+                                );
+                              } else if (qualificationController.text.isEmpty) {
+                                _validateName = false;
+                                _validateDate = false;
+                                _validateExperience = false;
+                                _validateQualification = true;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.lightBlue,
+                                    content: Text(
+                                      "Please Fill All the Field",
+                                      style: TextStyle(
+                                          fontSize: 18.0, color: Colors.black),
+                                    ),
+                                  ),
+                                );
+                              } else if (emailController.text.isEmpty) {
+                                _validateName = false;
+                                _validateDate = false;
+                                _validateExperience = false;
+                                _validateQualification = false;
+                                _validateEmail = true;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.lightBlue,
+                                    content: Text(
+                                      "Please Fill All the Field",
+                                      style: TextStyle(
+                                          fontSize: 18.0, color: Colors.black),
+                                    ),
+                                  ),
+                                );
+                              } else if (mobilecontroller.text.isEmpty) {
+                                _validateName = false;
+                                _validateDate = false;
+                                _validateExperience = false;
+                                _validateMobile = false;
+                                _validateQualification = false;
+                                _validateEmail = false;
+                                _validateMobile = true;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.lightBlue,
+                                    content: Text(
+                                      "Please Fill All the Field",
+                                      style: TextStyle(
+                                          fontSize: 18.0, color: Colors.black),
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                _validateName = false;
+                                _validateDate = false;
+                                _validateExperience = false;
+                                _validateMobile = false;
+                                _validateQualification = false;
+                                _validateEmail = false;
+                                _validateMobile = false;
+                                users
+                                    .doc(idController.text)
+                                    .update({
+                                      'Emp-Name': nameController.text,
+                                      'DateOfBrith': datecontroller.text,
+                                      'Experience': experiencecontroller.text,
+                                      'gender': gender,
+                                      'email': emailController.text,
+                                      'PhoneNo': mobilecontroller.text,
+                                      'qualification':
+                                          qualificationController.text
+                                    })
+                                    .then((value) => print(
+                                        "Employee data Updated Successfully"))
+                                    .catchError((error) =>
+                                        print("Failed to update user: $error"));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.lightBlue,
+                                    content: Text(
+                                      "Employee Data Updated successfully",
+                                      style: TextStyle(
+                                          fontSize: 18.0, color: Colors.black),
+                                    ),
+                                  ),
+                                );
+                                Navigator.of(context).pop();
+                              }
                             },
                             icon: const Icon(Icons.edit),
                             label: const Text("Update"), //label text

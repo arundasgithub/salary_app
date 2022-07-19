@@ -112,13 +112,14 @@ class _AddEmployeeState extends State<AddEmployee> {
               children: [
                 SingleChildScrollView(
                   child: Container(
-                    height: 750,
+                    height: 760,
                     child: Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: TextFormField(
                             focusNode: myFocusNode,
+                            maxLength: 20,
                             decoration: InputDecoration(
                               labelText: 'Employee Name',
                               labelStyle: TextStyle(
@@ -147,10 +148,11 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: TextField(
                               keyboardType: TextInputType.number,
                               controller: _DOBController,
+                              maxLength: 10,
                               decoration: InputDecoration(
                                 labelText: 'Date',
                                 labelStyle: TextStyle(
@@ -177,7 +179,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                               )),
                         ),
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Column(
                             children: [
                               Row(
@@ -228,9 +230,10 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: TextField(
                             keyboardType: TextInputType.number,
+                            maxLength: 3,
                             decoration: InputDecoration(
                               labelText: 'Exprience',
                               labelStyle: TextStyle(
@@ -256,8 +259,9 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: TextField(
+                            maxLength: 6,
                             decoration: InputDecoration(
                               labelText: 'Qualification',
                               labelStyle: TextStyle(
@@ -283,8 +287,9 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: TextFormField(
+                            maxLength: 20,
                             decoration: InputDecoration(
                               labelText: 'Email',
                               labelStyle: TextStyle(
@@ -314,8 +319,9 @@ class _AddEmployeeState extends State<AddEmployee> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: TextFormField(
+                            maxLength: 10,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: 'Mobile Number',
@@ -344,138 +350,145 @@ class _AddEmployeeState extends State<AddEmployee> {
                             },
                           ),
                         ),
+                        // const Padding(
+                        //   padding: EdgeInsets.only(top: 10),
+                        // ),
                         Container(
                           height: 100,
                           alignment: Alignment.center,
-                          padding: const EdgeInsets.all(30),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                if (name.isEmpty) {
-                                  _validateName = true;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      backgroundColor: Colors.lightBlue,
-                                      content: Text(
-                                        "Please Fill All the Field",
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.black),
+                          //   padding: const EdgeInsets.all(20),
+                          child: ElevatedButton.icon(
+                              onPressed: () {
+                                setState(() {
+                                  if (name.isEmpty) {
+                                    _validateName = true;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.lightBlue,
+                                        content: Text(
+                                          "Please Fill All the Field",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else if (_DOBController.text.isEmpty) {
-                                  _validateName = false;
-                                  _validateDate = true;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      backgroundColor: Colors.lightBlue,
-                                      content: Text(
-                                        "Please Fill All the Field",
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.black),
+                                    );
+                                  } else if (_DOBController.text.isEmpty) {
+                                    _validateName = false;
+                                    _validateDate = true;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.lightBlue,
+                                        content: Text(
+                                          "Please Fill All the Field",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else if (experience.isEmpty) {
-                                  _validateName = false;
-                                  _validateDate = false;
-                                  _validateExperience = true;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      backgroundColor: Colors.lightBlue,
-                                      content: Text(
-                                        "Please Fill All the Field",
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.black),
+                                    );
+                                  } else if (experience.isEmpty) {
+                                    _validateName = false;
+                                    _validateDate = false;
+                                    _validateExperience = true;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.lightBlue,
+                                        content: Text(
+                                          "Please Fill All the Field",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else if (qualification.isEmpty) {
-                                  _validateName = false;
-                                  _validateDate = false;
-                                  _validateExperience = false;
-                                  _validateQualification = true;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      backgroundColor: Colors.lightBlue,
-                                      content: Text(
-                                        "Please Fill All the Field",
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.black),
+                                    );
+                                  } else if (qualification.isEmpty) {
+                                    _validateName = false;
+                                    _validateDate = false;
+                                    _validateExperience = false;
+                                    _validateQualification = true;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.lightBlue,
+                                        content: Text(
+                                          "Please Fill All the Field",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else if (email.isEmpty) {
-                                  _validateName = false;
-                                  _validateDate = false;
-                                  _validateExperience = false;
-                                  _validateQualification = false;
-                                  _validateEmail = true;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      backgroundColor: Colors.lightBlue,
-                                      content: Text(
-                                        "Please Fill All the Field",
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.black),
+                                    );
+                                  } else if (email.isEmpty) {
+                                    _validateName = false;
+                                    _validateDate = false;
+                                    _validateExperience = false;
+                                    _validateQualification = false;
+                                    _validateEmail = true;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.lightBlue,
+                                        content: Text(
+                                          "Please Fill All the Field",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else if (phone.isEmpty) {
-                                  _validateName = false;
-                                  _validateDate = false;
-                                  _validateExperience = false;
-                                  _validateMobile = false;
-                                  _validateQualification = false;
-                                  _validateEmail = false;
-                                  _validateMobile = true;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      backgroundColor: Colors.lightBlue,
-                                      content: Text(
-                                        "Please Fill All the Field",
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.black),
+                                    );
+                                  } else if (phone.isEmpty) {
+                                    _validateName = false;
+                                    _validateDate = false;
+                                    _validateExperience = false;
+                                    _validateMobile = false;
+                                    _validateQualification = false;
+                                    _validateEmail = false;
+                                    _validateMobile = true;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.lightBlue,
+                                        content: Text(
+                                          "Please Fill All the Field",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else {
-                                  _validateName = false;
-                                  _validateDate = false;
-                                  _validateExperience = false;
-                                  _validateMobile = false;
-                                  _validateQualification = false;
-                                  _validateEmail = false;
-                                  _validateMobile = false;
-                                  AddEmployee();
-                                }
-                              });
-                              // Navigator.of(context).pop();
-                            },
-                            //child: const Text("Register"),
-                            child: Container(
-                                height: 30,
-                                width: 100,
-                                alignment: Alignment.center,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Register',
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    Icon(
-                                      Icons.check_box,
-                                      color: Color.fromARGB(255, 24, 48, 58),
-                                    ),
-                                  ],
-                                )),
-                          ),
+                                    );
+                                  } else {
+                                    _validateName = false;
+                                    _validateDate = false;
+                                    _validateExperience = false;
+                                    _validateMobile = false;
+                                    _validateQualification = false;
+                                    _validateEmail = false;
+                                    _validateMobile = false;
+                                    AddEmployee();
+                                  }
+                                });
+                                // Navigator.of(context).pop();
+                              },
+                              icon: const Icon(Icons.check_box),
+                              label: const Text("Register"),
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.deepPurple)
+                              //child: const Text("Register"),
+                              // child: Container(
+                              //     height: 30,
+                              //     width: 100,
+                              //     alignment: Alignment.center,
+                              //     child: Row(
+                              //       children: [
+                              //         Text(
+                              //           'Register',
+                              //           style: TextStyle(fontSize: 18),
+                              //         ),
+                              //         Icon(
+                              //           Icons.check_box,
+                              //           color: Color.fromARGB(255, 24, 48, 58),
+                              //         ),
+                              //       ],
+                              //     )),
+                              ),
                         ),
                       ],
                     ),
