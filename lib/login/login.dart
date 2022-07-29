@@ -35,6 +35,26 @@ class HomePage extends StatelessWidget {
           });
     }
 
+    void Forgot() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: Color.fromARGB(255, 179, 168, 253),
+              title: Text("Alert !!"),
+              content: Text("Please Contact to Your Administrator"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    }
+
     void Login() async {
       String myemail = emailController.text.trim();
       String mypassword = passwordController.text.trim();
@@ -49,26 +69,27 @@ class HomePage extends StatelessWidget {
               "Please Fill All the Field",
               style: TextStyle(fontSize: 18.0, color: Colors.black),
             ),
+            duration: Duration(seconds: 2),
           ),
         );
         log("Please Fill All the Field");
         //This is for Alert box
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Login Failure"),
-                content: Text("Please Fill all the Details"),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text("Ok"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
-              );
-            });
+        // showDialog(
+        //     context: context,
+        //     builder: (BuildContext context) {
+        //       return AlertDialog(
+        //         title: Text("Login Failure"),
+        //         content: Text("Please Fill all the Details"),
+        //         actions: <Widget>[
+        //           FlatButton(
+        //             child: Text("Ok"),
+        //             onPressed: () {
+        //               Navigator.of(context).pop();
+        //             },
+        //           )
+        //         ],
+        //       );
+        //     });
       } else {
         try {
           UserCredential userCredential = await FirebaseAuth.instance
@@ -82,8 +103,10 @@ class HomePage extends StatelessWidget {
                   "Login Sucess",
                   style: TextStyle(fontSize: 18.0, color: Colors.black),
                 ),
+                duration: Duration(seconds: 2),
               ),
             );
+
             trueLogin();
           }
         } on FirebaseAuthException catch (e) {
@@ -243,32 +266,39 @@ class HomePage extends StatelessWidget {
                       ),
                       FadeAnimation(
                           2,
-                          Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: LinearGradient(colors: [
-                                  Color.fromRGBO(143, 148, 251, 1),
-                                  Color.fromRGBO(143, 148, 251, .6),
-                                ])),
-                            child: Center(
-                              // child: Text(
-                              //   "Login",
-                              //   style: TextStyle(
-                              //       color: Colors.white,
-                              //       fontWeight: FontWeight.bold),
-                              // ),
-
-                              child: TextButton(
-                                onPressed: () {
-                                  Login();
-                                },
+                          new GestureDetector(
+                            onTap: () {
+                              Login();
+                              print("Login clicked");
+                            },
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: LinearGradient(colors: [
+                                    Color.fromRGBO(143, 148, 251, 1),
+                                    Color.fromRGBO(143, 148, 251, .6),
+                                  ])),
+                              child: Center(
                                 child: Text(
-                                  'Login', //title
+                                  "Login",
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
+
+                                // child: TextButton(
+                                //   onPressed: () {
+                                //     Login();
+                                //   },
+                                //   // child: Text(
+                                //   //   'Login', //title
+                                //   //   style: TextStyle(
+                                //   //       color: Colors.white,
+                                //   //       fontWeight: FontWeight.bold),
+                                //   // ),
+                                // ),
                               ),
                             ),
                           )),
@@ -276,12 +306,21 @@ class HomePage extends StatelessWidget {
                         height: 70,
                       ),
                       FadeAnimation(
-                          1.5,
-                          Text(
-                            "Forgot Password?",
-                            style: TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
-                          )),
+                        1.5,
+                        new GestureDetector(
+                          onTap: () {
+                            Forgot();
+                            print("Forgot clicked");
+                          },
+                          child: Container(
+                            child: Text(
+                              "Forgot Password?",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(143, 148, 251, 1)),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 )

@@ -41,7 +41,12 @@ class _EmpAttendenceState extends State<EmpAttendence> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
-                return Text('Something went wrong');
+                return const Center(
+                  child: Text(
+                    'Oops! Something went wrong.\nPlease contact your Administrator',
+                    style: TextStyle(fontSize: 23, color: Colors.white70),
+                  ),
+                );
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {

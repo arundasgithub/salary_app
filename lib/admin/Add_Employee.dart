@@ -75,15 +75,7 @@ class _AddEmployeeState extends State<AddEmployee> {
     documentReference
         .set(EmployeeList)
         .whenComplete(() => print("Employee Data stored successfully"));
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        backgroundColor: Colors.lightBlue,
-        content: Text(
-          "Employee Data saved successfully",
-          style: TextStyle(fontSize: 18.0, color: Colors.black),
-        ),
-      ),
-    );
+
     Navigator.of(context).pop();
   }
 
@@ -462,6 +454,18 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     _validateQualification = false;
                                     _validateEmail = false;
                                     _validateMobile = false;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.lightBlue,
+                                        content: Text(
+                                          "Employee Data saved successfully",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.black),
+                                        ),
+                                        duration: Duration(seconds: 1),
+                                      ),
+                                    );
                                     AddEmployee();
                                   }
                                 });
