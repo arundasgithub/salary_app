@@ -1,7 +1,12 @@
+//import 'dart:js';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pagaar/admin/Add_Employee.dart';
 import 'package:pagaar/admin/Emp_Profile.dart';
 import 'package:pagaar/admin/Emp_attandance.dart';
+import 'package:pagaar/login/login.dart';
 //import 'package:pagaar/admin/addemp.dart';
 
 void main() {
@@ -26,11 +31,25 @@ class AdminHome extends StatelessWidget {
 class AdminHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    void Logout() async {
+      User user = FirebaseAuth.instance.currentUser;
+
+      await FirebaseAuth.instance.signOut();
+      Navigator.popUntil(context, (route) => route.isFirst);
+      Navigator.pushReplacement(
+          context, CupertinoPageRoute(builder: ((context) => HomePage())));
+    }
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 90, 81, 225),
-        title: Text('Admin Home'),
-      ),
+          backgroundColor: Color.fromARGB(255, 90, 81, 225),
+          title: Text('Admin Home'),
+          actions: <Widget>[
+            IconButton(
+                icon: const Icon(Icons.logout),
+                color: Colors.black,
+                onPressed: () => {Logout()}),
+          ]),
       body: Center(
         child: Container(
           decoration: BoxDecoration(
