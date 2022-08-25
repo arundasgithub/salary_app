@@ -34,10 +34,41 @@ class AdminHomePage extends StatelessWidget {
     void Logout() async {
       User user = FirebaseAuth.instance.currentUser;
 
-      await FirebaseAuth.instance.signOut();
-      Navigator.popUntil(context, (route) => route.isFirst);
-      Navigator.pushReplacement(
-          context, CupertinoPageRoute(builder: ((context) => HomePage())));
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              //backgroundColor: Color.fromARGB(255, 179, 168, 253),
+              title: Text("Alert!"),
+              content: Text(
+                "Would you want to Logout",
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(color: Color.fromARGB(255, 233, 87, 87)),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                FlatButton(
+                  child: Text(
+                    "Ok",
+                    style: TextStyle(color: Color.fromARGB(255, 17, 185, 227)),
+                  ),
+                  onPressed: () async {
+                    Navigator.of(context).pop();
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.popUntil(context, (route) => route.isFirst);
+                    Navigator.pushReplacement(context,
+                        CupertinoPageRoute(builder: ((context) => HomePage())));
+                  },
+                )
+              ],
+            );
+          });
     }
 
     return Scaffold(
@@ -47,7 +78,7 @@ class AdminHomePage extends StatelessWidget {
           actions: <Widget>[
             IconButton(
                 icon: const Icon(Icons.logout),
-                color: Colors.black,
+                color: Colors.white,
                 onPressed: () => {Logout()}),
           ]),
       body: Center(

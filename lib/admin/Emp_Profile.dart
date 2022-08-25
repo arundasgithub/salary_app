@@ -62,7 +62,7 @@ class _EmpProfileState extends State<EmpProfile> {
                 return Card(
                   child: ListTile(
                     title: Container(
-                      color: Color.fromARGB(35, 130, 145, 244),
+                      //color: Color.fromARGB(35, 130, 145, 244),
                       child: Text(
                         data['Emp-Name'],
                         style: TextStyle(fontSize: 20),
